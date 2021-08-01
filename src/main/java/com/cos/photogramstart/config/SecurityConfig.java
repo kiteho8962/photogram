@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.anyRequest().permitAll() // 그외 주소는 모두 허용하겟다.
 			.and() // 그리고?
 			.formLogin() // 로그인 할껀데
-			.loginPage("/auth/signin") // 로그인 페이지가 /auth/signin이다. // GET Controller로 인해 jsp파일 리턴
-			.loginProcessingUrl("/auth/signin") // POST -> 스프링 시큐리티가 로그인 프로세스 진행
+			.loginPage("/auth/signin") // 로그인 페이지가 /auth/signin이다. // GET // Controller로 인해 jsp파일 리턴
+			.loginProcessingUrl("/auth/signin") // POST // -> 스프링 시큐리티가 로그인 프로세스 진행
 			.defaultSuccessUrl("/"); // 로그인을 정상적으로 처리하게되면 "/"으로 간다.
 	}
 

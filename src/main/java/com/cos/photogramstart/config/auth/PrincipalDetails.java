@@ -19,6 +19,7 @@ public class PrincipalDetails implements UserDetails{
 	private User user;
 	
 	public PrincipalDetails(User user) {
+		// JPA에서 리턴된 userEntity를 여기서 받는다.
 		this.user = user;
 	}
 
@@ -28,10 +29,14 @@ public class PrincipalDetails implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		
 		Collection<GrantedAuthority> collector = new ArrayList<>();
-		collector.add(()->{
-				return user.getRole();
-		});
+		collector.add(()-> user.getRole());
 		return collector;
+//		collector.add(new GrantedAuthority() {
+//			@Override
+//			public String getAuthority() {
+//				return user.getRole();
+//			}
+//		});
 	}
 
 	@Override
@@ -46,24 +51,27 @@ public class PrincipalDetails implements UserDetails{
 
 	@Override
 	public boolean isAccountNonExpired() {
+		// 니계정이 만료가 되었니?
+		// User Object에서 ex) getExpired가 true니? 이런식으로 여기서 설정 할수도 있음
 		return true;
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
+		// 니계정이 잠겼니??
 		return true;
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
+		// 니 비밀먼호가 1년이 지났는데 한번도 안바꾼거아니니?
 		return true;
 	}
 
 	@Override
 	public boolean isEnabled() {
+		// 니 계정이 활성화 되어있니?
 		return true;
 	}
-	
-	
 
 }

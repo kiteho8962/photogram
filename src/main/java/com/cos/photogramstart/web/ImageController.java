@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller // 파일이니까~
 public class ImageController {
 
-	@GetMapping({"/", "/image/story"})
+	@GetMapping({"/", "/image/story"}) // 주소 2개를 받을수도 있음!
 	public String story() {
 		return "image/story";
 	}

@@ -19,6 +19,7 @@ public class PrincipalDetailsService implements UserDetailsService {
 	
 	// 1. 패스워드는 시큐리티가 알아서 체킹하니까 신경쓸 필요 없다.
 	// 2. 리턴이 잘되면 자동으로 UserDetails 타입을 세션으로 만든다
+	// 부품을 갈아끼움
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { // Password는 시큐리티가 알아서 비교해줌
 		
@@ -29,9 +30,8 @@ public class PrincipalDetailsService implements UserDetailsService {
 		}else {
 			return new PrincipalDetails(userEntity);
 		}
-	}
 
-	
+	}
 	
 	
 	
