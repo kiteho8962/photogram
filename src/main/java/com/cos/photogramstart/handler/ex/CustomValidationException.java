@@ -1,7 +1,7 @@
 package com.cos.photogramstart.handler.ex;
 
 import java.util.Map;
-
+// RuntimeException을 상속받고 여기서 커스터마이징한다.
 public class CustomValidationException extends RuntimeException {
 
 	
@@ -12,7 +12,7 @@ public class CustomValidationException extends RuntimeException {
 	
 	public CustomValidationException(String message, Map<String, String> errorMap) {
 		// 나만의 커스텀 Exception
-		super(message);
+		super(message); // 부모한테 던지면 원래있던 getMessage가 받아서 리턴
 		this.errorMap = errorMap;
 	}
 	

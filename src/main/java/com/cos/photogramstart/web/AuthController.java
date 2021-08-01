@@ -31,7 +31,8 @@ public class AuthController {
 	
 	//@Autowired // 해도되고
 	private final AuthService authService;
-	
+
+//	기본 생성자를 만들어서 DI 하는 방법
 //	public AuthController(AuthService authService) { // 이렇게 해도된다
 //		this.authService = authService;
 //	}
@@ -50,13 +51,16 @@ public class AuthController {
 	// 회원 가입 버튼 -> x(error 403) 이유: csrf 토큰!
 	@PostMapping("/auth/signup") // 회원가입을 진행
 	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) { // key = value (x-www-form-urlencoded)
-		
+													// BindingResult Valid로 검사한 결과값
+		// @Valid 값들의 결과값에 대한 에러가 있는경우
 		if(bindingResult.hasErrors()) {
 			Map<String, String> errorMap = new HashMap<>();
-			
+			// getFieldErrors에 리스트 형태로 담김
 			for(FieldError error : bindingResult.getFieldErrors()) {
 				errorMap.put(error.getField(), error.getDefaultMessage());
+				System.out.println("=================================");
 				System.out.println(error.getDefaultMessage());
+				System.out.println("=================================");
 			}
 			throw new CustomValidationException("유효성검사 실패함", errorMap);
 		} else {

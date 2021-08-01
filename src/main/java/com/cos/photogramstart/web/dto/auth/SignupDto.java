@@ -11,14 +11,14 @@ import lombok.Data;
 @Data // Getter, Setter
 public class SignupDto { // request 를위해서 담아두는 object
 	
-	@Size(min=2, max=20)
-	@NotBlank
+	@Size(min=2, max=20) // -> @Valid로 검증하는 옵션
+	@NotBlank // -> @Valid로 검증하는 옵션
 	private String username;
-	@NotBlank
+	@NotBlank // -> @Valid로 검증하는 옵션
 	private String password;
-	@NotBlank
+	@NotBlank // -> @Valid로 검증하는 옵션
 	private String email;
-	@NotBlank
+	@NotBlank // -> @Valid로 검증하는 옵션
 	private String name;
 	
 	public User toEntity() {
