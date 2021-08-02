@@ -34,7 +34,7 @@
 					<div class="item__title">유저네임</div>
 					<div class="item__input">
 						<input type="text" name="username" placeholder="유저네임"
-							value="${principal.user.name}" readonly="readonly" />
+							value="${principal.user.username}" readonly="readonly" />
 					</div>
 				</div>
 				<div class="content-item__04">
@@ -73,7 +73,7 @@
 				<div class="content-item__09">
 					<div class="item__title">전회번호</div>
 					<div class="item__input">
-						<input type="text" name="tel" placeholder="전화번호"
+						<input type="text" name="phone" placeholder="전화번호"
 							value="${principal.user.phone}" />
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 				<div class="content-item__11">
 					<div class="item__title"></div>
 					<div class="item__input">
-						<button>제출</button>
+						<button type="button" onclick="update(${principal.user.id})">제출</button>
 					</div>
 				</div>
 				<!--제출버튼end-->
