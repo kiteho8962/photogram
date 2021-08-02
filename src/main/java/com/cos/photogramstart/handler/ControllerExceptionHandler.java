@@ -2,6 +2,9 @@ package com.cos.photogramstart.handler;
 
 import java.util.Map;
 
+import com.cos.photogramstart.handler.ex.CustomValidationApiException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +25,13 @@ public class ControllerExceptionHandler {
 		// 2. Ajax 통신 - CMRespDto(개발자)
 		// 3. Android통신 - CMRespDto(개발자)
 		return Script.back(e.getErrorMap().toString());
+	}
+
+
+	@ExceptionHandler(CustomValidationApiException.class)
+	public ResponseEntity<CMRespDto<?>> validationApiException(CustomValidationApiException e) {
+		System.out.println("================나 실행돼??================");
+		return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST);
 	}
 
 //	서버 개발자는 제네릭 타입으로 리턴받는게편하고,
