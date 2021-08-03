@@ -37,15 +37,16 @@ public class UserApiController {
             // getFieldErrors에 리스트 형태로 담김
             for(FieldError error : bindingResult.getFieldErrors()) {
                 errorMap.put(error.getField(), error.getDefaultMessage());
-                System.out.println("=================================");
-                System.out.println(error.getDefaultMessage());
-                System.out.println("=================================");
+//                System.out.println("=================================");
+//                System.out.println(error.getDefaultMessage());
+//                System.out.println("=================================");
             }
             throw new CustomValidationApiException("유효성검사 실패함", errorMap);
         }else {
             User userEntity = userService.회원수정(id, userUpdateDto.toEntity());
             principalDetails.setUser(userEntity); // 세션 정보 변경
             return new CMRespDto<>(1, "회원 수정 완료", userEntity);
+            // 응답시에 userEntity의 모든 getter함수가 호출되고 JSON으로 파싱하여 응답해야한다. -> 그로인해 getImages가 호출이되는데 문제가된다.
         }
 
 

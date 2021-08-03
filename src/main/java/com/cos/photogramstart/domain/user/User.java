@@ -1,14 +1,12 @@
 package com.cos.photogramstart.domain.user;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
+import javax.persistence.*;
 
+import com.cos.photogramstart.domain.image.Image;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -43,6 +41,15 @@ public class User {
 	
 	private String profileImageUrl; // 사진
 	private String role; // 권한
+
+	// mappedBy 나는 연관관계의 주인이 아니다! 그러므로 테이블에 컬럼을 만들지마!!
+	// User를 Select할 때 해당 User id로 등록된 image들을 다 가져와!
+	// LAZY ==> User를 Select할 때 해당 User id로 등록된 image들을 다가져오는게 아니라! -> 대신 getImages() 함수가 호출될때 가져와!!
+	// EAGER ==> User를 Select할 때 해당 User id로 등록된 image들을 전부 join해서 가져와!!
+	// 양방향 매핑!!
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"user"}) // Images안에 있는 user를 무시한다
+	private List<Image> images;
 	
 	private LocalDateTime createDate; // 데이터베이스는 항상 언제 들어왔는지가 필요하다.
 	
