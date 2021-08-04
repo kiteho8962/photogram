@@ -21,5 +21,12 @@ public interface SubscribeRepository extends JpaRepository<Subscribe, Integer> {
     @Query(value = "SELECT COUNT(*) FROM subscribe WHERE fromUserId=:pageUserId", nativeQuery = true)
     int mSubscribeCount(int pageUserId);
 
+    // Subscribe 형태로 리턴받기때문에 이건 여기서 사용할수가 없다.
+//    @Query(value = "SELECT u.id, u.username, u.profileImageUrl,\n" +
+//            "    if((SELECT 1 FROM subscribe WHERE fromUserId = 1 AND toUserId = u.id), 1, 0) subscribeState,\n" +
+//            "    if((1=u.id), 1, 0) equalUserState\n" +
+//            "    FROM user u INNER JOIN subscribe s\n" +
+//            "    ON u.id = s.toUserId\n" +
+//            "    WHERE s.fromUserId = 2")
 
 }

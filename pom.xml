@@ -20,6 +20,7 @@
 	<dependencies>
 
 		<!-- qlrm -->
+		<!-- 데이터베이스에서 나온 리턴 결과값을 자바 클래스에 매핑 해주는 라이브러리 -->
 		<dependency>
 			<groupId>org.qlrm</groupId>
 			<artifactId>qlrm</artifactId>
