@@ -3,6 +3,7 @@ package com.cos.photogramstart.handler.ex;
 import java.util.Map;
 
 public class CustomValidationApiException extends RuntimeException {
+    // 제일 처음 값을 받을때
 
     // 객체를 구별할때!!
     private static final long serialVersionUID = 1L;

@@ -1,5 +1,6 @@
 package com.cos.photogramstart.domain.image;
 
+import com.cos.photogramstart.domain.comment.Comment;
 import com.cos.photogramstart.domain.likes.Likes;
 import com.cos.photogramstart.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -37,15 +38,20 @@ public class Image { // N, 1
     @OneToMany(mappedBy = "image")
     private List<Likes> likes;
 
-    // 이미지에 댓글?
-
-    private LocalDateTime createDate;
+    // 이미지에 댓글
+    // 무한참조 방지
+    @OrderBy("id DESC ") // JPA를 통해서 select 하고 lazy 로딩할때 가능
+    @JsonIgnoreProperties({"image"})
+    @OneToMany(mappedBy = "image")
+    private List<Comment> comments;
 
     @Transient // DB에 컬럼이 만들어지지 않는다.
     private boolean likeState;
 
     @Transient
     private int likeCount;
+
+    private LocalDateTime createDate;
 
     @PrePersist
     public void createDate() {

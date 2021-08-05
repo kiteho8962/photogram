@@ -1,8 +1,8 @@
 // (1) 회원정보 수정
 function update(userId) {
-    event.preventDefault();
+    event.preventDefault(); // form 이벤트 막기
 
-    let data=$("#profileUpdate").serialize();
+    let data=$("#profileUpdate").serialize(); // key = value
     console.log(data);
     $.ajax({
         type: "put",

@@ -52,24 +52,25 @@ public class AuthController {
 	@PostMapping("/auth/signup") // 회원가입을 진행
 	public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) { // key = value (x-www-form-urlencoded)
 													// BindingResult Valid로 검사한 결과값
+		// ValidationAdvice 에서 처리함!!
 		// @Valid 값들의 결과값에 대한 에러가 있는경우
-		if(bindingResult.hasErrors()) {
-			Map<String, String> errorMap = new HashMap<>();
-			// getFieldErrors에 리스트 형태로 담김
-			for(FieldError error : bindingResult.getFieldErrors()) {
-				errorMap.put(error.getField(), error.getDefaultMessage());
-				System.out.println("=================================");
-				System.out.println(error.getDefaultMessage());
-				System.out.println("=================================");
-			}
-			throw new CustomValidationException("유효성검사 실패함", errorMap);
-		} else {
+//		if(bindingResult.hasErrors()) {
+//			Map<String, String> errorMap = new HashMap<>();
+//			// getFieldErrors에 리스트 형태로 담김
+//			for(FieldError error : bindingResult.getFieldErrors()) {
+//				errorMap.put(error.getField(), error.getDefaultMessage());
+//				System.out.println("=================================");
+//				System.out.println(error.getDefaultMessage());
+//				System.out.println("=================================");
+//			}
+//			throw new CustomValidationException("유효성검사 실패함", errorMap);
+//		} else {
 			// User <- signupDto를 넣는다.
 			User user = signupDto.toEntity(); // 연결고리
-			User userEntity = authService.회원가입(user);
-			System.out.println(userEntity);
+			authService.회원가입(user);
+//			System.out.println(userEntity);
 			return "auth/signin";
-		}
+//		}
 	}
 
 }

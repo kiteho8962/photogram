@@ -35,6 +35,10 @@
 </head>
 
 <body>
+
+	<%-- principalId 담아두는 곳--%>
+	<%-- 이렇게하면 어디에서든 자바스크립트에서 꺼내 쓸수있다? wow--%>
+	<input type="hidden" id="principalId" value="${principal.user.id}"/>
 	
 	<header class="header">
 		<div class="container">

@@ -26,7 +26,7 @@ public class ControllerExceptionHandler {
 		// 1. 클라이언트에게 응답할때는 Script가 좋다.(브라우저 or 클라이언트)
 		// 2. Ajax 통신 - CMRespDto(개발자)
 		// 3. Android통신 - CMRespDto(개발자)
-		System.out.println("================나 실행돼??================");
+		System.out.println("================CustomValidationException??================");
 		if(e.getErrorMap() == null) {
 			return Script.back(e.getMessage());
 		} else {
@@ -36,13 +36,13 @@ public class ControllerExceptionHandler {
 
 	@ExceptionHandler(CustomValidationApiException.class)
 	public ResponseEntity<?> validationApiException(CustomValidationApiException e) {
-		System.out.println("================나 실행돼??================");
+		System.out.println("================CustomValidationApiException??================");
 		return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()), HttpStatus.BAD_REQUEST);
 	}
 
 	@ExceptionHandler(CustomApiException.class)
 	public ResponseEntity<?> apiException(CustomApiException e) {
-		System.out.println("================나 실행돼??================");
+		System.out.println("================CustomApiException??================");
 		return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST);
 	}
 
