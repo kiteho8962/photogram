@@ -26,7 +26,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다. oracle-sequence, mysql-autoincrement 이렇게 따라감
 	private int id;
 	
-	@Column(length = 20, unique = true) // unique = 제약조건
+	@Column(length = 100, unique = true) // unique = 제약조건
 	private String username;
 	@Column(nullable = false)
 	private String password;
