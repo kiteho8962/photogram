@@ -34,6 +34,11 @@ public class ControllerExceptionHandler {
 		}
 	}
 
+	@ExceptionHandler(CustomException.class)
+	public String exception(CustomException e) {
+		return Script.back(e.getMessage());
+	}
+
 	@ExceptionHandler(CustomValidationApiException.class)
 	public ResponseEntity<?> validationApiException(CustomValidationApiException e) {
 		System.out.println("================CustomValidationApiException??================");
@@ -46,10 +51,7 @@ public class ControllerExceptionHandler {
 		return new ResponseEntity<>(new CMRespDto<>(-1, e.getMessage(), null), HttpStatus.BAD_REQUEST);
 	}
 
-	@ExceptionHandler(CustomException.class)
-	public String exception(CustomException e) {
-		return Script.back(e.getMessage());
-	}
+
 
 //	서버 개발자는 제네릭 타입으로 리턴받는게편하고,
 //	Generic 타입으로 에러타입 지정

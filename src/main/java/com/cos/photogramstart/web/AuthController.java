@@ -26,9 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor // final 필드를 DI 할때 사용 의존성 주입할때
 @Controller // IoC에 등록이 되어있다는 의미이자, 파일을 return 하는 컨트롤러!
 public class AuthController {
-	
-	
-	
+
 	//@Autowired // 해도되고
 	private final AuthService authService;
 
